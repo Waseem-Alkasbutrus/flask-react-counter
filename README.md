@@ -11,17 +11,18 @@
 clone this repository to your computer
 ``` bash 
 git clone https://github.com/Waseem-Alkasbutrus/flask-react-counter.git
+cd flask-react-counter/
 ```
 
 start Flask server
 ``` bash
-cd flask-react-counter/flask-server
+cd flask-server/
 python3 counter-server.py
 ```
 
-Then start the React client
+open another terminal instance, then start the React client
 ``` bash
-cd ../react-client
+cd react-client
 npm start
 ```
 a browser tab pointed to [``http://localhost:3000/``](http://localhost:3000/) will automatically open
