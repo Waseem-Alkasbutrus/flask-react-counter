@@ -1,0 +1,76 @@
+.App {
+  display: flex;
+  flex-direction: column;
+
+  height: 100vh;
+
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+
+  text-align: center;
+}
+
+@keyframes counter-change {
+  35% {
+    transform: scale(1.03);
+  }
+}
+
+.counter {
+  display: inline-block;
+  margin: 0;
+  padding: 3rem 3rem;
+
+  min-width: 18rem;
+
+  background-color: #8ecae6;
+  border-width: 0;
+  border-radius: 3rem;
+
+  font-size: 15rem;
+  font-weight: 200;
+  color: #f3f3f3;
+
+  box-shadow: 0 1rem 1.8rem -1.3rem rgba(26, 26, 26, 0.5);
+
+  animation-duration: 0.2s;
+  animation-name: counter-change;
+  animation-iteration-count: 1;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+button {
+  padding: 0.8rem;
+  border-radius: 1rem;
+  border-width: 0;
+
+  min-width: 5rem;
+  min-height: 4.4rem;
+
+  font-size: 1.5rem;
+  color: #ffffff;
+
+  background-color: #219ebc;
+  box-shadow: 0 1rem 1.8rem -1.3rem rgba(26, 26, 26, 0.5);
+
+  transition: all 0.08s ease-in-out;
+}
+
+button:hover {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+.danger {
+  background-color: #ff9203;
+}
