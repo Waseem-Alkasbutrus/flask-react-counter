@@ -13,5 +13,15 @@ code {
 }
 
 :root {
+  /* Button colors */
+  --color-danger: #ff9203;
+  --color-submit: #9658be;
+  --color-action: #219ebc;
+  
+  /* Text colors */
+  --color-text: #ffffff;
+
+  /* Styles */
   background-color: #4c52c7;
+  color: var(--color-text);
 }

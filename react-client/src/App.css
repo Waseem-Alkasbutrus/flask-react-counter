@@ -6,7 +6,7 @@
 
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 3rem;
 
   text-align: center;
 }
@@ -30,7 +30,6 @@
 
   font-size: 15rem;
   font-weight: 200;
-  color: #f3f3f3;
 
   box-shadow: 0 1rem 1.8rem -1.3rem rgba(26, 26, 26, 0.5);
 
@@ -39,10 +38,57 @@
   animation-iteration-count: 1;
 }
 
-.button-container {
+.counter-incrementor-container {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+input {
+  padding: 0.4rem;
+
+  background-color: var(--color-submit);
+
+  font-size: 1.5rem;
+  color: var(--color-white);
+
+  border-radius: 1rem;
+  border-width: 0;
+
+  box-shadow: 0 1rem 1.8rem -1.3rem rgba(26, 26, 26, 0.5);
+
+  transition: all 0.08s ease-in-out;
+}
+
+input:hover {
+  filter: brightness(1.05);
+  transform: scale(1.01);
+}
+
+input:active, input:focus {
+  outline: none;
+  border-width: 0;
+  transform: scale(1);
+}
+
+::placeholder {
+  color: var(--color-white);
+  opacity: 0.7;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.bottom-container {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: 2rem;
+}
+
+.form-container {
+  display: flex;
+  gap: 0.5rem
 }
 
 button {
@@ -54,9 +100,9 @@ button {
   min-height: 4.4rem;
 
   font-size: 1.5rem;
-  color: #ffffff;
+  color: var(--color-white);
 
-  background-color: #219ebc;
+  background-color: var(--color-action);
   box-shadow: 0 1rem 1.8rem -1.3rem rgba(26, 26, 26, 0.5);
 
   transition: all 0.08s ease-in-out;
@@ -72,5 +118,9 @@ button:active {
 }
 
 .danger {
-  background-color: #ff9203;
+  background-color: var(--color-danger);
+}
+
+.submit {
+  background-color: var(--color-submit);
 }
