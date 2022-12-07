@@ -23,6 +23,10 @@ def reset():
 
     return '%s' % toJSON(0)
 
+@app.route('/count/set', methods=['POST'])
+def set():
+    write(request.args["newValue"])
+    return '%s' % toJSON(request.args["newValue"])
 
 @app.route('/count', methods=['GET', 'POST'])
 def count():
