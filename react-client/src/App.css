@@ -4,6 +4,9 @@
 
   height: 100vh;
 
+  overflow: hidden;
+
+
   align-items: center;
   justify-content: center;
   gap: 3rem;
@@ -20,16 +23,19 @@
 .counter {
   display: inline-block;
   margin: 0;
-  padding: 3rem 3rem;
+  padding: 3rem 2rem;
 
   min-width: 18rem;
+  max-width: 93rem;
+  overflow: hidden;
 
   background-color: #8ecae6;
   border-width: 0;
   border-radius: 3rem;
 
-  font-size: 15rem;
+  font-size: 12rem;
   font-weight: 200;
+  text-overflow: ellipsis;
 
   box-shadow: 0 1rem 1.8rem -1.3rem rgba(26, 26, 26, 0.5);
 

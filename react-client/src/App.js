@@ -19,7 +19,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className='counter-incrementor-container'>
+      <div className="counter-incrementor-container">
         <button
           onClick={() => {
             requestNewCount(setCount, 'dec')
@@ -40,21 +40,31 @@ function App() {
       </div>
 
       <section className="bottom-container">
-        <div className='form-container'>
+        <div className="form-container">
           <button
             className="submit"
             onClick={() => {
-              if (input != "") {
-                requestNewCount(setCount, 'set', "newValue=" + input)
+              console.log(input)
+              if (!isNaN(parseFloat(input))) {
+                requestNewCount(setCount, 'set', 'newValue=' + input)
               }
             }}
           >
             SET
           </button>
-          
-          <input type="number" placeholder='New Count...' onChange={(evt) => setInput(evt.target.value)}></input>
-        </div>
 
+          <input
+            type="number"
+            placeholder="New Count..."
+            onChange={(evt) => {
+              if (isNaN(parseFloat(evt.target.value))) {
+                setInput('Empty')
+              } else {
+                setInput(evt.target.value)
+              }
+            }}
+          ></input>
+        </div>
 
         <button
           className="danger"
@@ -69,8 +79,8 @@ function App() {
   )
 }
 
-async function requestNewCount(setState, path, query="") {
-  fetch('/count/' + path + "?" + query, {
+async function requestNewCount(setState, path, query = '') {
+  fetch('/count/' + path + '?' + query, {
     method: 'POST',
   })
     .then((res) => res.json())
