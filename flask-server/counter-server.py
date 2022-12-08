@@ -34,18 +34,23 @@ def count():
 
 def getCount():
     file = open("./count.txt", "r")
-    count = int(file.readline())
+    count = file.readline()
     file.close()
 
-    return count
+    if not count.isnumeric() or count is "":
+        count = 0
+        write(0)
+
+    return int(count)
 
 def toJSON(num):
     return "{\"Count\": \"%s\"}" % num
 
 def write(newCount):
-    file = open("./count.txt", "w")
-    file.write(str(newCount))
-    file.close()
+    if type(newCount) == int:
+        file = open("./count.txt", "w")
+        file.write(str(newCount))
+        file.close()
 
 if __name__ == "__main__":
     app.run(debug=True)
