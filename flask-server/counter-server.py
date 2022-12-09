@@ -25,8 +25,8 @@ def reset():
 
 @app.route('/count/set', methods=['POST'])
 def set():
-    write(request.args["newValue"])
-    return '%s' % toJSON(request.args["newValue"])
+    write(int(request.args["newValue"]))
+    return '%s' % toJSON(getCount())
 
 @app.route('/count', methods=['GET', 'POST'])
 def count():
@@ -37,20 +37,23 @@ def getCount():
     count = file.readline()
     file.close()
 
-    if not count.isnumeric() or count is "":
-        count = 0
+    try:
+        return int(count)
+    except:
+        print("count corrupted, resetting to 0")
         write(0)
-
-    return int(count)
+        return 0
 
 def toJSON(num):
     return "{\"Count\": \"%s\"}" % num
 
 def write(newCount):
-    if type(newCount) == int:
+    try:
         file = open("./count.txt", "w")
-        file.write(str(newCount))
+        file.write(str(int(newCount)))
         file.close()
+    except:
+        print(newCount, "not an integer")
 
 if __name__ == "__main__":
     app.run(debug=True)
