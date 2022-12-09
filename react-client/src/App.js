@@ -5,17 +5,17 @@ function App() {
   const [count, setCount] = useState(0)
   const [input, setInput] = useState()
 
+  const pop = new Audio(require("./pop.mp3"))
+
+  let counter = newCounter(count)
+
   useEffect(() => {
-    fetch('/count')
-      .then((res) => res.json())
-      .then((count) => setCount(count.Count))
+    requestNewCount(setCount)
   }, [])
 
   useEffect(() => {
     counter = newCounter(count)
   }, [count])
-
-  let counter = newCounter(count)
 
   return (
     <div className="App">
@@ -23,6 +23,7 @@ function App() {
         <button
           onClick={() => {
             requestNewCount(setCount, 'dec')
+            pop.play()
           }}
         >
           -1
@@ -33,6 +34,7 @@ function App() {
         <button
           onClick={() => {
             requestNewCount(setCount, 'inc')
+            pop.play()
           }}
         >
           +1
@@ -44,9 +46,9 @@ function App() {
           <button
             className="submit"
             onClick={() => {
-              console.log(input)
               if (!isNaN(parseFloat(input))) {
                 requestNewCount(setCount, 'set', 'newValue=' + input)
+                pop.play()
               }
             }}
           >
@@ -70,6 +72,7 @@ function App() {
           className="danger"
           onClick={() => {
             requestNewCount(setCount, 'reset')
+            pop.play()
           }}
         >
           RESET
@@ -79,12 +82,19 @@ function App() {
   )
 }
 
-async function requestNewCount(setState, path, query = '') {
-  fetch('/count/' + path + '?' + query, {
+async function requestNewCount(setState, path = '', params = '') {
+  path = (path === ""? path : "/" + path)
+  params = (params === ""? params : "?" + params)
+
+  let url = '/count' + path + params
+  console.log(url)
+
+  fetch(url, {
     method: 'POST',
   })
     .then((res) => res.json())
-    .then((count) => setState(count.Count))
+    .then((count) => {setState(count.Count)
+    console.log(count.Count)})
 }
 
 function newCounter(count) {
