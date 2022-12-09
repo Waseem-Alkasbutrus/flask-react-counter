@@ -4,17 +4,19 @@ import React, { useState, useEffect } from 'react'
 function App() {
   const [count, setCount] = useState(0)
   const [input, setInput] = useState()
+  const [counterElem, setCounterElem] = useState(
+    newCounter(count, 'new-counter'),
+  )
 
-  const pop = new Audio(require("./pop.mp3"))
-
-  let counter = newCounter(count)
+  const pop = new Audio(require('./pop.mp3'))
 
   useEffect(() => {
-    requestNewCount(setCount)
+    makeRequest(setCount)
   }, [])
 
   useEffect(() => {
-    counter = newCounter(count)
+    setCounterElem(newCounter(count))
+    pop.play()
   }, [count])
 
   return (
@@ -22,19 +24,17 @@ function App() {
       <div className="counter-incrementor-container">
         <button
           onClick={() => {
-            requestNewCount(setCount, 'dec')
-            pop.play()
+            makeRequest(setCount, 'dec')
           }}
         >
           -1
         </button>
 
-        {counter}
+        {counterElem}
 
         <button
           onClick={() => {
-            requestNewCount(setCount, 'inc')
-            pop.play()
+            makeRequest(setCount, 'inc')
           }}
         >
           +1
@@ -47,8 +47,7 @@ function App() {
             className="submit"
             onClick={() => {
               if (!isNaN(parseFloat(input))) {
-                requestNewCount(setCount, 'set', 'newValue=' + input)
-                pop.play()
+                makeRequest(setCount, 'set', 'newValue=' + input)
               }
             }}
           >
@@ -71,8 +70,7 @@ function App() {
         <button
           className="danger"
           onClick={() => {
-            requestNewCount(setCount, 'reset')
-            pop.play()
+            makeRequest(setCount, 'reset')
           }}
         >
           RESET
@@ -82,9 +80,9 @@ function App() {
   )
 }
 
-async function requestNewCount(setState, path = '', params = '') {
-  path = (path === ""? path : "/" + path)
-  params = (params === ""? params : "?" + params)
+async function makeRequest(setState, path = '', params = '') {
+  path = path === '' ? path : '/' + path
+  params = params === '' ? params : '?' + params
 
   let url = '/count' + path + params
   console.log(url)
@@ -93,13 +91,15 @@ async function requestNewCount(setState, path = '', params = '') {
     method: 'POST',
   })
     .then((res) => res.json())
-    .then((count) => {setState(count.Count)
-    console.log(count.Count)})
+    .then((count) => {
+      setState(count.Count)
+      console.log(count.Count)
+    })
 }
 
-function newCounter(count) {
+function newCounter(count, anim = 'update-counter') {
   return (
-    <h1 key={count} className="counter">
+    <h1 key={count} className={'counter ' + anim}>
       {parseFloat(count).toLocaleString('en')}
     </h1>
   )
