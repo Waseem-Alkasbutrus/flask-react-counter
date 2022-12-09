@@ -6,17 +6,29 @@
 
   overflow: hidden;
 
-
   align-items: center;
   justify-content: center;
   gap: 3rem;
 
   text-align: center;
+
+  animation: slideDown 0.5s ease-in-out;
 }
 
 @keyframes counter-change {
   35% {
     transform: scale(1.03);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-40%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 100%;
   }
 }
 
@@ -38,7 +50,7 @@
   text-overflow: ellipsis;
 
   box-shadow: 0 1rem 1.8rem -1.3rem rgba(26, 26, 26, 0.5);
-
+  
   animation-duration: 0.2s;
   animation-name: counter-change;
   animation-iteration-count: 1;
