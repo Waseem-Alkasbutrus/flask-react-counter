@@ -31,6 +31,7 @@ python3 counter-server.py
 open another terminal instance, then start the React client
 ``` bash
 cd react-client
+npm install
 npm start
 ```
 a browser tab pointed to [``http://localhost:3000/``](http://localhost:3000/) will automatically open
