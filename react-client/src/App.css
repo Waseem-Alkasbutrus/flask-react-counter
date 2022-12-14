@@ -33,7 +33,7 @@
 
 @keyframes counter-change {
   35% {
-    transform: scale(1.03);
+    transform: scale(1.05);
   }
 }
 
