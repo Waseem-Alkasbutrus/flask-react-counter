@@ -1,6 +1,8 @@
 import './App.css'
 import React, { useState, useEffect } from 'react'
 
+import ResetIcon from './Reset.svg'
+
 function App() {
   const [count, setCount] = useState(0)
   const [input, setInput] = useState()
@@ -30,7 +32,14 @@ function App() {
           -1
         </button>
 
-        {counterElem}
+        <div className="counter-container">
+          <button className="reset-button" onClick={() => {
+            makeRequest(setCount, 'reset')
+          }}>
+            <img src={ResetIcon}></img>
+          </button>
+          {counterElem}
+        </div>
 
         <button
           onClick={() => {
@@ -66,15 +75,6 @@ function App() {
             }}
           ></input>
         </div>
-
-        <button
-          className="danger"
-          onClick={() => {
-            makeRequest(setCount, 'reset')
-          }}
-        >
-          RESET
-        </button>
       </section>
     </div>
   )
@@ -99,9 +99,9 @@ async function makeRequest(setState, path = '', params = '') {
 
 function newCounter(count, anim = 'update-counter') {
   return (
-    <h1 key={count} className={'counter ' + anim}>
-      {parseFloat(count).toLocaleString('en')}
-    </h1>
+      <h1 key={count} className={'counter ' + anim}>
+        {parseFloat(count).toLocaleString('en')}
+      </h1>
   )
 }
 

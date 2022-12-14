@@ -14,14 +14,17 @@ code {
 
 :root {
   /* Button colors */
-  --color-danger: #ff9203;
-  --color-submit: #9658be;
-  --color-action: #219ebc;
+  --color-danger: #ffffff40;
+  --color-submit: #ffffff40;
+  --color-action: #ffffff40;
+  --color-counter: #ffffff20;
   
   /* Text colors */
   --color-text: #ffffff;
 
   /* Styles */
-  background-color: #4c52c7;
+  background-color: #4c52c780;
   color: var(--color-text);
+
+  user-select: none;
 }
