@@ -1,7 +1,11 @@
 import './App.css'
 import React, { useState, useEffect } from 'react'
 
+import PopAudio from './pop.mp3'
 import ResetIcon from './Reset.svg'
+import ArrowIcon from './Arrow.svg'
+import SendIcon from './Send.svg'
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -10,7 +14,7 @@ function App() {
     newCounter(count, 'new-counter'),
   )
 
-  const pop = new Audio(require('./pop.mp3'))
+  const pop = new Audio(PopAudio)
 
   useEffect(() => {
     makeRequest(setCount)
@@ -23,19 +27,22 @@ function App() {
 
   return (
     <div className="App">
-      <div className="counter-incrementor-container">
+      <section className="top-container">
         <button
           onClick={() => {
             makeRequest(setCount, 'dec')
           }}
         >
-          -1
+          <img className='btn-img dec' src={ArrowIcon}></img>
         </button>
 
         <div className="counter-container">
-          <button className="reset-button" onClick={() => {
-            makeRequest(setCount, 'reset')
-          }}>
+          <button
+            className="reset-button"
+            onClick={() => {
+              makeRequest(setCount, 'reset')
+            }}
+          >
             <img src={ResetIcon}></img>
           </button>
           {counterElem}
@@ -46,21 +53,19 @@ function App() {
             makeRequest(setCount, 'inc')
           }}
         >
-          +1
+          <img className='btn-img inc' src={ArrowIcon}></img>
         </button>
-      </div>
+      </section>
 
       <section className="bottom-container">
-        <div className="form-container">
           <button
-            className="submit"
             onClick={() => {
               if (!isNaN(parseFloat(input))) {
                 makeRequest(setCount, 'set', 'newValue=' + input)
               }
             }}
           >
-            SET
+            <img className='btn-img submit' src={SendIcon}></img>
           </button>
 
           <input
@@ -74,7 +79,6 @@ function App() {
               }
             }}
           ></input>
-        </div>
       </section>
     </div>
   )
@@ -99,9 +103,9 @@ async function makeRequest(setState, path = '', params = '') {
 
 function newCounter(count, anim = 'update-counter') {
   return (
-      <h1 key={count} className={'counter ' + anim}>
-        {parseFloat(count).toLocaleString('en')}
-      </h1>
+    <h1 key={count} className={'counter ' + anim}>
+      {parseFloat(count).toLocaleString('en')}
+    </h1>
   )
 }
 
